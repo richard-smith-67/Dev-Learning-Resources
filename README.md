@@ -36,4 +36,36 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
+```c#
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Decorator
+{
+    public abstract class CondimentsDecorator : IBeverage
+    {
+        private readonly string description;
+        protected double cost;
+        private readonly IBeverage beverage;
+
+        public CondimentsDecorator(IBeverage beverage)
+        {
+            this.description = GetType().Name;
+            this.beverage = beverage;
+        }
+
+        public double Cost()
+        {
+            return cost + beverage.Cost();
+        }
+
+        public string Description()
+        {
+            return beverage.Description() + ", " + description;
+        }
+    }
+}
+```
+
 
